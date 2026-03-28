@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 
 const {HoldingsModel} = require("../backend/model/HoldingsModel");
 const {PositionsModel} = require("../backend/model/PositionsModel");
@@ -18,7 +19,8 @@ const authRoute = require("./Routes/AuthRoute");
 
 app.use(
   cors({
-    origin: ["http://localhost:3000" , "http://localhost:3001"],
+    // origin: ["http://localhost:3000" , "http://localhost:3001"],
+    origin: true,
     credentials: true,
   })
 );
@@ -214,6 +216,12 @@ app.get("/allHoldings", async(req , res) => {
 app.get("/allPositions", async(req , res) => {
     let allPositions = await PositionsModel.find({});
     res.json(allPositions);
+});
+
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
 
 mongoose
