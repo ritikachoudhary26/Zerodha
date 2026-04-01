@@ -47,13 +47,10 @@ This is a full-stack clone of the Zerodha trading platform, built to simulate a 
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/your-username/your-zerodha-repo.git
-cd your-zerodha-repo
+git clone 
+cd zerodha
 cd backend
 npm install
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
 cd frontend
 npm install
 npm start
